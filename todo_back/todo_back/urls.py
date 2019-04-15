@@ -15,10 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from tastypie.api import Api
+from api.api import JobResource
 
+v_1_api = Api(api_name='v1')
+v_1_api.register(JobResource())
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('todo_back2/', include('todo_back2.urls')),
-    path('', include('api.urls')),
+    # path('', views.HomePageView.as_view(), name='home'),
+    path('api/', include(v_1_api.urls)),
 ]
+
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('todo_back2/', include('todo_back2.urls')),
+#     path('', include('api.urls')),
+# ]
