@@ -15,19 +15,19 @@ export class ProviderService extends MainService {
   }
 
   getTaskLists(): Promise<ITaskList[]> {
-    return this.get('http://localhost:8000/task_lists/', {});
+    return this.get('http://localhost:8000/api/task_lists/', {});
   }
 
   getTaskListDetail(id: number): Promise<ITaskList> {
-    return this.get(`http://localhost:8000/task_lists/${id}/`, {});
+    return this.get(`http://localhost:8000/api/task_lists/${id}`, {});
   }
 
   getTaskListTasks(id: number): Promise<ITaskShort[]> {
-    return this.get(`http://localhost:8000/task_lists/${id}/tasks/`, {});
+    return this.get(`http://localhost:8000/api/task_lists/${id}/tasks/`, {});
   }
 
   getTaskDetail(id: number): Promise<ITaskLong> {
-    return this.get(`http://localhost:8000/tasks/${id}/`, {});
+    return this.get(`http://localhost:8000/api/tasks/${id}/`, {});
   }
 
 }
