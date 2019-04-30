@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { identifierModuleUrl } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
 import { empty } from 'rxjs';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-task-list-detail',
@@ -20,7 +21,8 @@ export class TaskListDetailComponent implements OnInit {
   constructor(
     private provider: ProviderService,
     private router: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class TaskListDetailComponent implements OnInit {
     // this.provider.sendMessage.subscribe(res => {
     //   this.id = parseInt(res)
     // })
-
+    if(this.auth.isAuthenticated){
     this.id = parseInt(this.router.snapshot.paramMap.get('id'))
 
     if(this.id){
@@ -37,9 +39,22 @@ export class TaskListDetailComponent implements OnInit {
       })
     }
   }
+  }
 
   navigateBack(){
     this.location.back()
+  }
+
+  updateTaskList(){
+    this.provider.updateTaskList(this.taskList).then(res => {
+      this.taskList = res
+    })
+  }
+
+  deleteTaskList(){
+    this.provider.deleteTaskList(this.taskList.id).then(() => {
+      this.location.back()
+    })
   }
 
 }

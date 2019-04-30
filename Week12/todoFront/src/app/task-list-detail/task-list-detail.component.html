@@ -1,20 +1,37 @@
 <app-base>
-  <ng-container>
-      <div class="container">
-          <div class="row" name="header">
-              <button type="button" class="btn btn-link btn-sm" (click)="navigateBack()">Go Back</button>
-              <span><h2>Task Lists</h2></span>
-          </div>
-          <hr>
+  <ng-container body>  
+    <div class="container">
+      <div class="row">
+          <button type="button" class="btn btn-link btn-sm bg-success text-white" (click)="navigateBack()"><- Back</button> 
+      </div> 
+        <br>
           <br>
-          <div name="body">
+          <div>
             
-              <h1>
-              Detail page for Task List: 
+              <h2>
+              This is Detail page for Task List: 
               <strong>{{taskList.name}}</strong> with ID: 
               <strong> {{taskList.id}} </strong>
-            </h1>
+            </h2>
             
+          </div>
+          <br>
+          <div>
+            <table class="table">
+                <tr>
+                  <td>#</td>
+                  <td>Name</td>
+                  <td>Actions</td>
+                </tr>
+                <tr>
+                  <td>{{taskList.id}}</td>
+                  <td> <input type="text" class="form-control" [(ngModel)]="taskList.name"></td>
+                  <td>
+                    <button type="button" class="btn btn-warning btn-sm" (click)="updateTaskList()">Update</button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteTaskList()">Delete</button>
+                  </td>
+                </tr>
+            </table>
           </div>
       </div>
   </ng-container>

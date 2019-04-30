@@ -1,26 +1,42 @@
 <app-base>
-    <ng-container>
+  <ng-container body> 
+
       <div class="container">
-        <div class="row">
-            <button type="button" class="btn btn-link btn-sm bg-success text-white" (click)="navigateBack()"><- Back</button> 
+      <div class="row">
+          <button type="button" class="btn btn-link btn-sm bg-success text-white" (click)="navigateBack()"><- Back</button> 
+      </div> 
+        <br>
+        <br>
+        <div>
+            <div class="form-group">
+                <label for="tasklistname">Create Task List</label>
+                <input type="text" class="form-control" id="tasklistname" [(ngModel)]="taskListName" placeholder="Enter the name">
+            </div>
+              <button type="submit" class="btn btn-primary" (click)="createTaskList()">Create</button>
         </div>
-        
-          <table class="table table-bordered bg-primary text-white">
+        <br>
+        <table class="table">
             <tr>
-              <td>№</td>
-              <td>TaskName</td>
+              <td>#</td>
+              <td>Name</td>
             </tr>
             <tr *ngFor="let taskList of taskLists">
               <td>{{taskList.id}}</td>
               <td>{{taskList.name}}</td>
               <td>
-                <a routerLink="/task_lists/{{taskList.id}}/" style="color:white">Details</a>
+                <a routerLink="/task_lists/{{taskList.id}}/">Details</a> 
               </td>
               <td>
-                <a routerLink="/task_lists/{{taskList.id}}/tasks" style="color:white">Tasks</a> 
+                <a routerLink="/task_lists/{{taskList.id}}/tasks">Tasks</a> 
               </td>
             </tr>
-        </table> 
+        </table>
+        <!--<ul class="list-group">
+          <li *ngFor="let taskList of taskLists" class="list-group-item d-flex justify-content-between align-items-center">
+            {{taskList.id}} - {{taskList.name}}
+            <a routerLink="/task_lists/{{taskList.id}}/tasks">Tasks</a> 
+          </li>
+        </ul>-->
       </div>
       </ng-container>
 </app-base>

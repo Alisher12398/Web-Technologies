@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ClassProvider, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,11 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { ProviderService } from './shared/services/provider.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BaseComponent } from './base/base.component';
-import { CrudComponent } from './crud/crud.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {AuthInterceptor} from './AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -20,15 +24,22 @@ import { CrudComponent } from './crud/crud.component';
     TaskListTasksComponent,
     TaskDetailComponent,
     BaseComponent,
-    CrudComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    ProviderService
+    ProviderService,
+    <ClassProvider> {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

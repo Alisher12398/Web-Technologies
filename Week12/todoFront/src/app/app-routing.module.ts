@@ -6,7 +6,8 @@ import { TaskListDetailComponent } from './task-list-detail/task-list-detail.com
 import { TaskListTasksComponent } from './task-list-tasks/task-list-tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { BaseComponent } from './base/base.component';
-import { CrudComponent} from './crud/crud.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {path: '', component: BaseComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'task_lists/:id', component: TaskListDetailComponent},
   {path: 'task_lists/:id/tasks', component: TaskListTasksComponent},
   {path: 'tasks/:id', component: TaskDetailComponent},
-  {path: 'crud/', component: CrudComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

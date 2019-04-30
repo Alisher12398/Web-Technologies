@@ -18,7 +18,7 @@ from django.urls import path, include
 from api.resources import TaskResource, TaskListsResource
 from api.views import task_list
 # note_resource = NoteResource()
-# task_resource =  TaskResource()
+# task_resource =  TaskResource()'
 # taskList_resource =  TaskListsResource()
 
 urlpatterns = [

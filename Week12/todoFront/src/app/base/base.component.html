@@ -1,27 +1,46 @@
 <style>
-  td a{
-  color:white;
-}
+    td a{
+    color:white;
+  }
 </style>
-<nav class="navbar navbar-dark bg-primary">
-  <!-- Navbar content -->
-  <a routerLink="/" class="navbar-brand ml-auto">Lab#11 To-Do</a> 
-   <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+<nav class="navbar navbar-dark bg-primary"> 
+    <a routerLink="/" class="navbar-brand ml-auto">Lab#11 To-Do</a> 
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a routerLink="/task_lists" class="nav-link">Task Lists</a> 
+        </li>
+        <li class="nav-item">
+          <a routerLink="/tasks/2" class="nav-link">Tasks</a> 
+        </li>
+      </ul> 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" *ngIf="auth.isAuthenticated()">
         <a routerLink="/task_lists" class="nav-link">Task Lists</a> 
       </li>
-      <li class="nav-item">
-        <a routerLink="/tasks/2" class="nav-link">Tasks</a> 
+    </ul>
+    <ul class="navbar-nav mr-auto pull-right">
+      <li class="nav-item" *ngIf="!auth.isAuthenticated()">
+        <a routerLink="/login" class="nav-link">Log In</a> 
       </li>
-    </ul> 
+      <li class="nav-item" *ngIf="auth.isAuthenticated()">
+        <a class="nav-link" (click)="logout()">Log Out</a> 
+      </li>
+      <li class="nav-item" *ngIf="!auth.isAuthenticated()">
+        <a routerLink="/register" class="nav-link">Register</a> 
+      </li>
+    </ul>
+  </div>
+
 </nav>
 
 <br>
 <div class="container">
   <div class="row justify-content-center">
           <div class="container col-md-6">
-          <ng-content></ng-content>
+          <ng-content *ngIf="auth.isAuthenticated()" select="[body]"></ng-content>
+          <ng-content *ngIf="!auth.isAuthenticated()" select="[authforms]"></ng-content>
           </div>
+      
   </div>
 </div>
-
